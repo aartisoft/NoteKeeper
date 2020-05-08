@@ -1,6 +1,8 @@
 package com.example.notekeeper;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,44 +15,62 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    ListView noteList;
-
-    public Button next;
-
-    public void init (){
-        next= (Button)findViewById(R.id.but1);
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent toy = new Intent(MainActivity.this,Activity2.class);
-                startActivity(toy);
-            }
-        });
-    }
+    RecyclerView mRecyclerview;
+    MyAdapter myAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        init();
 
-        noteList=(ListView)findViewById(R.id.list);
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("Note 1");
-        arrayList.add("Note 2");
-        arrayList.add("Note 3");
-        arrayList.add("Note 4");
-        arrayList.add("Note 5");
-        arrayList.add("Note 6");
-        arrayList.add("Note 7");
-        arrayList.add("Note 8");
-        arrayList.add("Note 9");
-        arrayList.add("Note 10");
-        arrayList.add("Note 11");
-        arrayList.add("Note 12");
-        arrayList.add("Note 13"); 
+        mRecyclerview = findViewById(R.id.recyclerView);
+        mRecyclerview.setLayoutManager(new LinearLayoutManager(this));
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(MainActivity.this,android.R.layout.simple_list_item_1,arrayList);
-        noteList.setAdapter(arrayAdapter);
+        myAdapter = new MyAdapter(this,getMyList());
+        mRecyclerview.setAdapter(myAdapter);
+    }
+
+    private ArrayList<Model> getMyList(){
+
+        ArrayList<Model>models = new ArrayList<>();
+
+        Model m = new Model();
+        m.setTitle("Note Title");
+        m.getDescription("This is a description of a note...");
+        m.setImg(R.drawable.note_icon);
+        models.add(m);
+
+        m = new Model();
+        m.setTitle("Note Title");
+        m.getDescription("This is a description of a note...");
+        m.setImg(R.drawable.note_icon);
+        models.add(m);
+
+        m = new Model();
+        m.setTitle("Note Title");
+        m.getDescription("This is a description of a note...");
+        m.setImg(R.drawable.note_icon);
+        models.add(m);
+
+        m = new Model();
+        m.setTitle("Note Title");
+        m.getDescription("This is a description of a note...");
+        m.setImg(R.drawable.note_icon);
+        models.add(m);
+
+        m = new Model();
+        m.setTitle("Note Title");
+        m.getDescription("This is a description of a note...");
+        m.setImg(R.drawable.note_icon);
+        models.add(m);
+
+        m = new Model();
+        m.setTitle("Note Title");
+        m.getDescription("This is a description of a note...");
+        m.setImg(R.drawable.note_icon);
+        models.add(m);
+
+        return models;
+
     }
 }
