@@ -1,7 +1,11 @@
-package com.example.notekeeper;
+package com.example.notekeeper.model;
 
-public class Model {
-    private String title, description;
+public class NoteModel {
+
+    public String name;
+
+    private String title;
+    private String description;
     private int img;
 
     public String getTitle() {
@@ -12,7 +16,7 @@ public class Model {
         this.title = title;
     }
 
-    public String getDescription(String s) {
+    public String getDescription() {
         return description;
     }
 
