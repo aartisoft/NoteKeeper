@@ -28,21 +28,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     FloatingActionButton add_note_fab;
 
-    //shared_prefs
-    private EditText titleText;
-    private EditText noteText;
-    private Button saveButton;
 
-    public static final String SHARED_PREFS = "sharedprefs";
-    public static final String TEXT = "text";
-
-    private String text1;
-    private String text2;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
 
         mRecyclerview = findViewById(R.id.recyclerView);
@@ -54,48 +46,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         add_note_fab = findViewById(R.id.fab);
         add_note_fab.setOnClickListener(this);
 
-        //sharedprefs
-        titleText =(EditText) findViewById(R.id.title_Text);
-        noteText =(EditText) findViewById(R.id.note_text);
-        saveButton =(Button) findViewById(R.id.saveBtn);
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveData();
-            }
-        });
-
-        loadData();
-        updateViews();
 
 
     }
 
 
-    public void saveData(){
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putString(TEXT, titleText.getText().toString());
-        editor.putString(TEXT, noteText.getText().toString());
-        editor.apply();
-
-        Toast.makeText(this,"Note saved",Toast.LENGTH_SHORT).show();
-
-    }
-
-    public void loadData(){
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
-        text1 = sharedPreferences.getString(TEXT, "");
-        text2 = sharedPreferences.getString(TEXT, "");
-
-    }
-
-    public void updateViews(){
-        titleText.setText(text1);
-        noteText.setText(text2);
-    }
 
 
 
