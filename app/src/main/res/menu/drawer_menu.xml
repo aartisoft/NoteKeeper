@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_addNote"
+            android:icon="@drawable/ic_note_add"
+            android:title="Add Note" />
+        <item
+            android:id="@+id/nav_favNote"
+            android:icon="@drawable/ic_fav_note"
+            android:title="Favourite Notes" />
+        <item
+            android:id="@+id/nav_noteReminder"
+            android:icon="@drawable/ic_note_reminder"
+            android:title="Reminders" />
+    </group>
+
+</menu>

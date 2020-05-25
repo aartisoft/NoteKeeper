@@ -1,6 +1,8 @@
 package com.example.notekeeper.model;
 
-public class NoteModel {
+import java.io.Serializable;
+
+public class NoteModel implements Serializable {
 
     public String name;
 

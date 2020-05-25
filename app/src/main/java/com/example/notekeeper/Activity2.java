@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.notekeeper.model.NoteModel;
+import com.example.notekeeper.utils.SharedPrefs;
+
 public class Activity2 extends AppCompatActivity {
 
     //shared_prefs
@@ -59,8 +62,17 @@ public class Activity2 extends AppCompatActivity {
         editor.putString(NOTE, noteText.getText().toString());
         editor.apply(); **/
 
-        getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).edit().putString("title", titleText.getText().toString()).commit();
-        getSharedPreferences("sharedprefs", Context.MODE_PRIVATE).edit().putString("note", noteText.getText().toString()).commit();
+       /** getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).edit().putString("title", titleText.getText().toString()).commit();
+        getSharedPreferences("sharedprefs", Context.MODE_PRIVATE).edit().putString("note", noteText.getText().toString()).commit();**/
+       //note model that will contain saved data
+        NoteModel note = new NoteModel();
+        note.setTitle(titleText.getText().toString());
+        note.setDescription(noteText.getText().toString());
+        note.setImg(R.drawable.note_icon);
+
+        SharedPrefs prefs = new SharedPrefs(this);
+        prefs.addNote(note);
+
 
         Toast.makeText(this,"Note saved",Toast.LENGTH_SHORT).show();
 
@@ -70,13 +82,15 @@ public class Activity2 extends AppCompatActivity {
        /** SharedPreferences sharedPreferences = getSharedPreferences("sharedprefs",MODE_PRIVATE);
         text1 = sharedPreferences.getString(TITLE, "");
         text2 = sharedPreferences.getString(NOTE, ""); **/
-        text1 = getSharedPreferences("sharedprefs", Context.MODE_PRIVATE).getString("title","add a title");
-        text2 = getSharedPreferences("sharedprefs", Context.MODE_PRIVATE).getString("note","No composed note");
+        text1 = getSharedPreferences("sharedprefs", Context.MODE_PRIVATE).getString("title","");
+        text2 = getSharedPreferences("sharedprefs", Context.MODE_PRIVATE).getString("note","");
 
     }
 
     public void updateViews(){
         titleText.setText(text1);
         noteText.setText(text2);
+
     }
+
 }

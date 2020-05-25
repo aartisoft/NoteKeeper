@@ -1,6 +1,10 @@
 package com.example.notekeeper;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.notekeeper.adapter.NoteAdapter;
 import com.example.notekeeper.model.NoteModel;
+import com.example.notekeeper.utils.SharedPrefs;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -27,6 +32,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     NoteAdapter noteAdapter;
 
     FloatingActionButton add_note_fab;
+    // Menu drawer variable
+    private DrawerLayout drawer;
+
+
+
 
 
 
@@ -36,15 +46,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //set toolbar as actionbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
+        //Recyclerview instances
         mRecyclerview = findViewById(R.id.recyclerView);
         mRecyclerview.setLayoutManager(new LinearLayoutManager(this));
+        //sharedprefs instance
+        SharedPrefs prefs = new SharedPrefs(this);
 
-        noteAdapter = new NoteAdapter(this,getMyList());
+        noteAdapter = new NoteAdapter(this,prefs.getAllNotes());
         mRecyclerview.setAdapter(noteAdapter);
-
+        //fab instances
         add_note_fab = findViewById(R.id.fab);
         add_note_fab.setOnClickListener(this);
+
+        //menu drawer instances
+        drawer = findViewById(R.id.drawer_layout);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer,
+                toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();//Rotates hambager icon to get over drawer
 
 
 
@@ -52,11 +76,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-
-
-
-
-
+    @Override
+    public void onBackPressed() {
+        if(drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START);  //closes drawer on back press if its open
+        }else {
+            super.onBackPressed(); //closes activity as usuall
+        }
+    }
 
     private ArrayList<NoteModel> getMyList(){
 
