@@ -3,12 +3,14 @@ package com.example.notekeeper;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.content.Intent;
 
 import com.example.notekeeper.model.NoteModel;
 import com.example.notekeeper.utils.SharedPrefs;
@@ -44,11 +46,25 @@ public class Activity2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 saveData();
+                
             }
         });
 
-        loadData();
-        updateViews();
+        //get extras
+        Intent intent = getIntent();
+        String title = intent.getStringExtra("TITLE");
+        String description = intent.getStringExtra("DESCRIPTION");
+
+        if (title != null && description != null){
+            titleText.setText(title);
+            noteText.setText(description);
+        }
+        else {
+
+        }
+
+
+
 
 
 
@@ -76,12 +92,15 @@ public class Activity2 extends AppCompatActivity {
 
         Toast.makeText(this,"Note saved",Toast.LENGTH_SHORT).show();
 
+
+
+
     }
 
-    public void loadData(){
-       /** SharedPreferences sharedPreferences = getSharedPreferences("sharedprefs",MODE_PRIVATE);
+   /* public void loadData(){
+       SharedPreferences sharedPreferences = getSharedPreferences("sharedprefs",MODE_PRIVATE);
         text1 = sharedPreferences.getString(TITLE, "");
-        text2 = sharedPreferences.getString(NOTE, ""); **/
+        text2 = sharedPreferences.getString(NOTE, "");
         text1 = getSharedPreferences("sharedprefs", Context.MODE_PRIVATE).getString("title","");
         text2 = getSharedPreferences("sharedprefs", Context.MODE_PRIVATE).getString("note","");
 
@@ -92,5 +111,5 @@ public class Activity2 extends AppCompatActivity {
         noteText.setText(text2);
 
     }
-
+*/
 }

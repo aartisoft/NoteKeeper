@@ -19,10 +19,12 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
 
     ArrayList<NoteModel> NoteModels;
     Context context;
+    private OnNoteListener mOnNoteListener;
 
-    public NoteAdapter(Context context, ArrayList<NoteModel> myList) {
+    public NoteAdapter(Context context, ArrayList<NoteModel> myList, OnNoteListener onNoteListener) {
         this.NoteModels = myList;
         this.context = context;
+        this.mOnNoteListener = onNoteListener;
 
     }
     @NonNull
@@ -31,7 +33,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list,null);
 
-        ViewHolder obj = new ViewHolder(view);
+        ViewHolder obj = new ViewHolder(view, mOnNoteListener);
 
         return  obj;
     }
@@ -50,18 +52,33 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
         return NoteModels.size();
     }
 
-    public  class ViewHolder extends RecyclerView.ViewHolder{
+    public  class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView mImageView;
         TextView mTitle, mDes;
+        OnNoteListener onNoteListener;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
             super(itemView);
 
             this.mImageView = itemView.findViewById(R.id.imagelv);
             this.mDes = itemView.findViewById(R.id.descriptionlv);
             this.mTitle = itemView.findViewById(R.id.titlelv);
 
+            this.onNoteListener = onNoteListener;
+
+            itemView.setOnClickListener(this);//Attatches ViewHolder to OnClickListener
+
         }
+
+        @Override
+        public void onClick(View v) {
+            onNoteListener.OnNoteClick(NoteModels.get(getAbsoluteAdapterPosition()));
+
+        }
+    }
+//interface to detect item click in recycler
+    public interface OnNoteListener{
+        void OnNoteClick(NoteModel noteModel);//sends position of clicked item
     }
 
 }

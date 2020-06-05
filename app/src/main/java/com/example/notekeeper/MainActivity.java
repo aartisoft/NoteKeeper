@@ -7,6 +7,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,8 +27,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, NoteAdapter.OnNoteListener {
 
+
+    private static final String TAG = "MainActivity";
     RecyclerView mRecyclerview;
     NoteAdapter noteAdapter;
 
@@ -35,9 +38,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // Menu drawer variable
     private DrawerLayout drawer;
 
+    //refreshLayout
+    SwipeRefreshLayout swipeRefreshLayout;
 
 
 
+    @Override
+    protected void onResume() {
+        getSharedPreferences("sharedprefs", MODE_PRIVATE);
+        super.onResume();
+    }
 
 
 
@@ -54,9 +64,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mRecyclerview = findViewById(R.id.recyclerView);
         mRecyclerview.setLayoutManager(new LinearLayoutManager(this));
         //sharedprefs instance
-        SharedPrefs prefs = new SharedPrefs(this);
+        final SharedPrefs prefs = new SharedPrefs(this);
 
-        noteAdapter = new NoteAdapter(this,prefs.getAllNotes());
+        noteAdapter = new NoteAdapter(this,prefs.getAllNotes(),this);
         mRecyclerview.setAdapter(noteAdapter);
         //fab instances
         add_note_fab = findViewById(R.id.fab);
@@ -64,11 +74,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //menu drawer instances
         drawer = findViewById(R.id.drawer_layout);
-
+        //creates toggle
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer,
                 toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
-        toggle.syncState();//Rotates hambager icon to get over drawer
+        toggle.syncState();//Rotates humbager icon to get over drawer
+
+        //swiperefreshlayout instance
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                prefs.getAllNotes();
+                noteAdapter.notifyDataSetChanged();//notifies noteadapter data has been changed
+                swipeRefreshLayout.setRefreshing(false);//stops refreshing
+            }
+        });
 
 
 
@@ -81,9 +102,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(drawer.isDrawerOpen(GravityCompat.START)){
             drawer.closeDrawer(GravityCompat.START);  //closes drawer on back press if its open
         }else {
-            super.onBackPressed(); //closes activity as usuall
+            super.onBackPressed(); //closes activity as usual
         }
+
     }
+
+
 
     private ArrayList<NoteModel> getMyList(){
 
@@ -153,12 +177,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return NoteModels;
 
     }
-
+    //On fab button click
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(this,Activity2.class);
         startActivity(intent);
         Log.v("onclicklog","Opened a new note");
+
+    }
+    //On note click
+    @Override
+    public void OnNoteClick(NoteModel noteModel) {
+        Log.d(TAG, "OnNoteClick: clicked");
+        Intent intent = new Intent(this,Activity2.class);
+        intent.putExtra("TITLE",noteModel.getTitle() );
+        intent.putExtra("DESCRIPTION",noteModel.getDescription());
+        startActivity(intent);
 
     }
 }
