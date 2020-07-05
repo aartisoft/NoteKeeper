@@ -21,6 +21,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
     Context context;
     private OnNoteListener mOnNoteListener;
 
+    public NoteAdapter() {
+    }
+
     public NoteAdapter(Context context, ArrayList<NoteModel> myList, OnNoteListener onNoteListener) {
         this.NoteModels = myList;
         this.context = context;
@@ -43,7 +46,8 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
         holder.mTitle.setText(NoteModels.get(position).name);
         holder.mTitle.setText(NoteModels.get(position).getTitle());
         holder.mDes.setText(NoteModels.get(position).getDescription());
-        holder.mImageView.setImageResource(NoteModels.get(position).getImg());
+        //holder.mImageView.setImageResource(NoteModels.get(position).getImg());
+
 
     }
 
@@ -53,14 +57,14 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
     }
 
     public  class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView mImageView;
+       // ImageView mImageView;
         TextView mTitle, mDes;
         OnNoteListener onNoteListener;
 
         public ViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
             super(itemView);
 
-            this.mImageView = itemView.findViewById(R.id.imagelv);
+            //this.mImageView = itemView.findViewById(R.id.imagelv);
             this.mDes = itemView.findViewById(R.id.descriptionlv);
             this.mTitle = itemView.findViewById(R.id.titlelv);
 

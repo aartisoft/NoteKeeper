@@ -3,50 +3,56 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="3dp"
+    app:cardCornerRadius="6dp"
     app:cardElevation="2dp"
     app:cardUseCompatPadding="true"
 
     >
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:background="@color/lightyellow"
+        android:orientation="vertical"
+        android:weightSum="100"
         >
 
-        <ImageView
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:id="@+id/imagelv"
-            android:src="@drawable/note_icon"
-            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@color/darkbrown"
+            android:layout_weight="2">
+
+        </View>
+
+
+
+        <TextView
+            android:id="@+id/titlelv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="49"
+            android:lines="1"
+            android:text="Title"
+
+            android:textColor="#000"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/titlelv"
-            android:text="Title"
-            android:textSize="22sp"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:layout_toRightOf="@id/imagelv"
-            android:layout_toEndOf="@id/imagelv"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
-            android:lines="1"
-            />
-        
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_weight="49"
             android:id="@+id/descriptionlv"
             android:text="Description"
             android:textSize="18sp"
             android:textColor="#a9a9a9"
-            android:layout_toRightOf="@id/imagelv"
-            android:layout_toEndOf="@id/imagelv"
+
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
@@ -59,7 +65,6 @@
 
 
 
-
-    </RelativeLayout>
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

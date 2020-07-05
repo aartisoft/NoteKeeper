@@ -5,12 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity2">
+    tools:context=".Activity2"
+    >
+
+    <include layout="@layout/toolbar_layout"></include>
+
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
+        android:background="@color/lightyellow"
         >
 
 
@@ -28,15 +34,16 @@
 
 
 
-    <EditText
+    <com.example.notekeeper.LinedEditText
         android:id="@+id/note_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="11dp"
         android:ems="10"
         android:inputType="textMultiLine"
         android:layout_below="@+id/title_Text"
         android:hint="Compose Note"
+        android:gravity="top"
 
        />
 

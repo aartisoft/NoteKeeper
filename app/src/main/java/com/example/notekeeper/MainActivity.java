@@ -7,7 +7,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -39,15 +39,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private DrawerLayout drawer;
 
     //refreshLayout
-    SwipeRefreshLayout swipeRefreshLayout;
 
 
 
-    @Override
-    protected void onResume() {
-        getSharedPreferences("sharedprefs", MODE_PRIVATE);
-        super.onResume();
-    }
+
+
 
 
 
@@ -59,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //set toolbar as actionbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setTitle("Notes");
 
         //Recyclerview instances
         mRecyclerview = findViewById(R.id.recyclerView);
@@ -68,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         noteAdapter = new NoteAdapter(this,prefs.getAllNotes(),this);
         mRecyclerview.setAdapter(noteAdapter);
+
         //fab instances
         add_note_fab = findViewById(R.id.fab);
         add_note_fab.setOnClickListener(this);
@@ -81,20 +79,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toggle.syncState();//Rotates humbager icon to get over drawer
 
         //swiperefreshlayout instance
-        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                prefs.getAllNotes();
-                noteAdapter.notifyDataSetChanged();//notifies noteadapter data has been changed
-                swipeRefreshLayout.setRefreshing(false);//stops refreshing
-            }
-        });
+
 
 
 
 
     }
+
+    /*@Override
+    protected void onResume() {
+        noteAdapter.notifyDataSetChanged();
+        super.onResume();
+    }*/
 
 
     @Override
@@ -109,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-    private ArrayList<NoteModel> getMyList(){
+   /* private ArrayList<NoteModel> getMyList(){
 
         ArrayList<NoteModel>NoteModels = new ArrayList<>();
 
@@ -176,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         return NoteModels;
 
-    }
+    }*/
     //On fab button click
     @Override
     public void onClick(View v) {
@@ -192,6 +188,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(this,Activity2.class);
         intent.putExtra("TITLE",noteModel.getTitle() );
         intent.putExtra("DESCRIPTION",noteModel.getDescription());
+        intent.putExtra("ID",noteModel.getRandomID());
         startActivity(intent);
 
     }

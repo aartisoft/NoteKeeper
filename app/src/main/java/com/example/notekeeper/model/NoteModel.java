@@ -9,6 +9,8 @@ public class NoteModel implements Serializable {
     private String title;
     private String description;
     private int img;
+    private int randomID;
+
 
     public String getTitle() {
         return title;
@@ -32,5 +34,13 @@ public class NoteModel implements Serializable {
 
     public void setImg(int img) {
         this.img = img;
+    }
+
+    public int getRandomID() {
+        return randomID;
+    }
+
+    public void setRandomID(int randomID) {
+        this.randomID = randomID;
     }
 }
