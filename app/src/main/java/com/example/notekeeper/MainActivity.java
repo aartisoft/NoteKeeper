@@ -7,6 +7,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 
 import android.content.Intent;
@@ -39,8 +40,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private DrawerLayout drawer;
 
     //refreshLayout
+    SwipeRefreshLayout swipeRefreshLayout;
 
-
+    SharedPrefs prefs;
+    ArrayList<NoteModel>myList;
 
 
 
@@ -55,13 +58,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //set toolbar as actionbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setTitle("Notes");
+        setTitle("My Notes");
 
         //Recyclerview instances
         mRecyclerview = findViewById(R.id.recyclerView);
         mRecyclerview.setLayoutManager(new LinearLayoutManager(this));
         //sharedprefs instance
-        final SharedPrefs prefs = new SharedPrefs(this);
+         final SharedPrefs prefs = new SharedPrefs(this);
+         myList = prefs.getAllNotes();
 
         noteAdapter = new NoteAdapter(this,prefs.getAllNotes(),this);
         mRecyclerview.setAdapter(noteAdapter);
@@ -71,14 +75,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         add_note_fab.setOnClickListener(this);
 
         //menu drawer instances
-        drawer = findViewById(R.id.drawer_layout);
+        //drawer = findViewById(R.id.drawer_layout);
         //creates toggle
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer,
+       /* ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer,
                 toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
-        toggle.syncState();//Rotates humbager icon to get over drawer
+        toggle.syncState();//Rotates humbager icon to get over drawer*/
 
         //swiperefreshlayout instance
+        swipeRefreshLayout = findViewById(R.id.refresh_layout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                noteAdapter.refresh(prefs.getAllNotes());
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
+
+
 
 
 
@@ -86,22 +101,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    /*@Override
-    protected void onResume() {
-        noteAdapter.notifyDataSetChanged();
-        super.onResume();
-    }*/
 
 
-    @Override
-    public void onBackPressed() {
-        if(drawer.isDrawerOpen(GravityCompat.START)){
-            drawer.closeDrawer(GravityCompat.START);  //closes drawer on back press if its open
-        }else {
-            super.onBackPressed(); //closes activity as usual
-        }
 
-    }
+
+
+
+
+
+
+
+
 
 
 

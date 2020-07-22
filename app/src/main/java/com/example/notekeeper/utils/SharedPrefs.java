@@ -25,11 +25,12 @@ public class SharedPrefs {
     * @param note  this is the new note
     * */
     public void addNote(NoteModel note){
-        noteAdapter = new NoteAdapter();
+
         ArrayList<NoteModel> allNotes = new ArrayList<NoteModel>();
         allNotes = getAllNotes();
         allNotes.add(note);
-        noteAdapter.notifyDataSetChanged();
+
+
 
 
         String serialisedNotes = null;
@@ -45,10 +46,12 @@ public class SharedPrefs {
     }
 
     public void removeNote(NoteModel note){
+
         ArrayList<NoteModel> allnotes = getAllNotes();
         for (Iterator<NoteModel> del = allnotes.iterator(); del.hasNext();){
             if (del.next().getRandomID() == (note.getRandomID())){
                 del.remove();
+
             }
 
         }

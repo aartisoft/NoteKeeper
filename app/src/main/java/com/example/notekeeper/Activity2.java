@@ -36,7 +36,7 @@ public class Activity2 extends AppCompatActivity {
     private String title;
     private String description;
     private SharedPrefs prefs;
-    Adapter noteAdapter;
+    NoteAdapter noteAdapter;
 
     public static final String SHARED_PREFS = "sharedprefs";
     public static final String TITLE = "title";
@@ -65,19 +65,22 @@ public class Activity2 extends AppCompatActivity {
         //sharedprefs
         titleText =(EditText) findViewById(R.id.title_Text);
         noteText =(EditText) findViewById(R.id.note_text);
-        saveButton =(Button) findViewById(R.id.saveBtn);
+        //saveButton =(Button) findViewById(R.id.saveBtn);
         prefs = new SharedPrefs(this);
 
 
 
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
+
+
+        /*saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 saveData();
                 
             }
         });
+        */
 
 
 
@@ -127,10 +130,14 @@ public class Activity2 extends AppCompatActivity {
 
         if (id == R.id.save){
             saveData();
+
+
         }
         if (id == R.id.delete){
             NoteModel note = new NoteModel();
             note.setRandomID(randomID);
+
+
 
             Dialog alertdialog = new Dialog(note);
             alertdialog.show(getSupportFragmentManager(), "alertdialog");

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,15 +16,15 @@ import java.util.ArrayList;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
 
-    ArrayList<NoteModel> NoteModels;
+    ArrayList<NoteModel> mNoteModels;
     Context context;
-    private OnNoteListener mOnNoteListener;
+    OnNoteListener mOnNoteListener;
 
-    public NoteAdapter() {
-    }
+
+
 
     public NoteAdapter(Context context, ArrayList<NoteModel> myList, OnNoteListener onNoteListener) {
-        this.NoteModels = myList;
+        this.mNoteModels = myList;
         this.context = context;
         this.mOnNoteListener = onNoteListener;
 
@@ -43,9 +42,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.mTitle.setText(NoteModels.get(position).name);
-        holder.mTitle.setText(NoteModels.get(position).getTitle());
-        holder.mDes.setText(NoteModels.get(position).getDescription());
+        holder.mTitle.setText(mNoteModels.get(position).name);
+        holder.mTitle.setText(mNoteModels.get(position).getTitle());
+        holder.mDes.setText(mNoteModels.get(position).getDescription());
         //holder.mImageView.setImageResource(NoteModels.get(position).getImg());
 
 
@@ -53,7 +52,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
 
     @Override
     public int getItemCount() {
-        return NoteModels.size();
+        return mNoteModels.size();
     }
 
     public  class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -74,11 +73,17 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
 
         }
 
+
         @Override
         public void onClick(View v) {
-            onNoteListener.OnNoteClick(NoteModels.get(getAbsoluteAdapterPosition()));
+            onNoteListener.OnNoteClick(mNoteModels.get(getAbsoluteAdapterPosition()));
 
         }
+    }
+
+    public void refresh(ArrayList<NoteModel> list){
+        mNoteModels = list;
+        notifyDataSetChanged();
     }
 //interface to detect item click in recycler
     public interface OnNoteListener{

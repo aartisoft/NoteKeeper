@@ -18,14 +18,14 @@ public class Dialog extends AppCompatDialogFragment {
     private NoteModel notes;
     public Dialog(NoteModel note){
         this.notes = note;
-        prefs = new SharedPrefs(getActivity());
+
     }
 
 
     @NonNull
     @Override
     public android.app.Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-
+        prefs = new SharedPrefs(getActivity());
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Delete Note");
@@ -35,10 +35,14 @@ public class Dialog extends AppCompatDialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 prefs.removeNote(notes);
+                Toast.makeText(getActivity(),"Note deleted",Toast.LENGTH_SHORT).show();
                 dialog.cancel();
+
 
             }
         });
+
+
 
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
