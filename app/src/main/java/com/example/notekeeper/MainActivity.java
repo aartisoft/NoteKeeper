@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.notekeeper.adapter.NoteAdapter;
@@ -45,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     SharedPrefs prefs;
     ArrayList<NoteModel>myList;
 
+    TextView ctextView;
+
 
 
 
@@ -60,6 +63,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setSupportActionBar(toolbar);
         setTitle("My Notes");
 
+
+
+
+
         //Recyclerview instances
         mRecyclerview = findViewById(R.id.recyclerView);
         mRecyclerview.setLayoutManager(new LinearLayoutManager(this));
@@ -67,8 +74,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
          final SharedPrefs prefs = new SharedPrefs(this);
          myList = prefs.getAllNotes();
 
+
+        ctextView = findViewById(R.id.composeNote_text);
+        if (myList.size() == 0){
+            ctextView.setVisibility(View.VISIBLE);
+        }
+        else{
+            ctextView.setVisibility(View.INVISIBLE);
+        }
+
         noteAdapter = new NoteAdapter(this,prefs.getAllNotes(),this);
         mRecyclerview.setAdapter(noteAdapter);
+
+
 
         //fab instances
         add_note_fab = findViewById(R.id.fab);
@@ -101,88 +119,91 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //refresh recyclerview
+        SharedPrefs prefs = new SharedPrefs(this);
+        if(noteAdapter != null)
+        noteAdapter.refresh(prefs.getAllNotes());
 
+// checks to display compose new note text
+        if (prefs.getAllNotes().size() == 0){
+            ctextView.setVisibility(View.VISIBLE);
+        }
+        else{
+            ctextView.setVisibility(View.INVISIBLE);
+        }
+    }
 
+    /* private ArrayList<NoteModel> getMyList(){
 
+            ArrayList<NoteModel>NoteModels = new ArrayList<>();
 
+            NoteModel m = new NoteModel();
+            m.setTitle("Note Title");
+            m.setDescription("This is a description of a note...");
+            m.setImg(R.drawable.note_icon);
+            NoteModels.add(m);
 
+            m = new NoteModel();
+            m.setTitle("Note Title");
+            m.setDescription("This is a description of a note...");
+            m.setImg(R.drawable.note_icon);
+            NoteModels.add(m);
 
+            m = new NoteModel();
+            m.setTitle("Note Title");
+            m.setDescription("This is a description of a note...");
+            m.setImg(R.drawable.note_icon);
+            NoteModels.add(m);
 
+            m = new NoteModel();
+            m.setTitle("Note Title");
+            m.setDescription("This is a description of a note...");
+            m.setImg(R.drawable.note_icon);
+            NoteModels.add(m);
 
+            m = new NoteModel();
+            m.setTitle("Note Title");
+            m.setDescription("This is a description of a note...");
+            m.setImg(R.drawable.note_icon);
+            NoteModels.add(m);
 
+            m = new NoteModel();
+            m.setTitle("Note Title");
+            m.setDescription("This is a description of a note...");
+            m.setImg(R.drawable.note_icon);
+            NoteModels.add(m);
 
+            m = new NoteModel();
+            m.setTitle("Note Title");
+            m.setDescription("This is a description of a note...");
+            m.setImg(R.drawable.note_icon);
+            NoteModels.add(m);
 
+            m = new NoteModel();
+            m.setTitle("Note Title");
+            m.setDescription("This is a description of a note...");
+            m.setImg(R.drawable.note_icon);
+            NoteModels.add(m);
 
+            m = new NoteModel();
+            m.setTitle("Note Title");
+            m.setDescription("This is a description of a note...");
+            m.setImg(R.drawable.note_icon);
+            NoteModels.add(m);
 
+            m = new NoteModel();
+            m.setTitle("Note Title");
+            m.setDescription("This is a description of a note...");
+            m.setImg(R.drawable.note_icon);
+            m.name = "jina";
+            NoteModels.add(m);
 
-   /* private ArrayList<NoteModel> getMyList(){
+            return NoteModels;
 
-        ArrayList<NoteModel>NoteModels = new ArrayList<>();
-
-        NoteModel m = new NoteModel();
-        m.setTitle("Note Title");
-        m.setDescription("This is a description of a note...");
-        m.setImg(R.drawable.note_icon);
-        NoteModels.add(m);
-
-        m = new NoteModel();
-        m.setTitle("Note Title");
-        m.setDescription("This is a description of a note...");
-        m.setImg(R.drawable.note_icon);
-        NoteModels.add(m);
-
-        m = new NoteModel();
-        m.setTitle("Note Title");
-        m.setDescription("This is a description of a note...");
-        m.setImg(R.drawable.note_icon);
-        NoteModels.add(m);
-
-        m = new NoteModel();
-        m.setTitle("Note Title");
-        m.setDescription("This is a description of a note...");
-        m.setImg(R.drawable.note_icon);
-        NoteModels.add(m);
-
-        m = new NoteModel();
-        m.setTitle("Note Title");
-        m.setDescription("This is a description of a note...");
-        m.setImg(R.drawable.note_icon);
-        NoteModels.add(m);
-
-        m = new NoteModel();
-        m.setTitle("Note Title");
-        m.setDescription("This is a description of a note...");
-        m.setImg(R.drawable.note_icon);
-        NoteModels.add(m);
-
-        m = new NoteModel();
-        m.setTitle("Note Title");
-        m.setDescription("This is a description of a note...");
-        m.setImg(R.drawable.note_icon);
-        NoteModels.add(m);
-
-        m = new NoteModel();
-        m.setTitle("Note Title");
-        m.setDescription("This is a description of a note...");
-        m.setImg(R.drawable.note_icon);
-        NoteModels.add(m);
-
-        m = new NoteModel();
-        m.setTitle("Note Title");
-        m.setDescription("This is a description of a note...");
-        m.setImg(R.drawable.note_icon);
-        NoteModels.add(m);
-
-        m = new NoteModel();
-        m.setTitle("Note Title");
-        m.setDescription("This is a description of a note...");
-        m.setImg(R.drawable.note_icon);
-        m.name = "jina";
-        NoteModels.add(m);
-
-        return NoteModels;
-
-    }*/
+        }*/
     //On fab button click
     @Override
     public void onClick(View v) {

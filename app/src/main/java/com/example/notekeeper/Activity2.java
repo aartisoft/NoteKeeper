@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
 
@@ -23,7 +24,10 @@ import com.example.notekeeper.adapter.NoteAdapter;
 import com.example.notekeeper.model.NoteModel;
 import com.example.notekeeper.utils.SharedPrefs;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 
 public class Activity2 extends AppCompatActivity {
@@ -36,7 +40,7 @@ public class Activity2 extends AppCompatActivity {
     private String title;
     private String description;
     private SharedPrefs prefs;
-    NoteAdapter noteAdapter;
+
 
     public static final String SHARED_PREFS = "sharedprefs";
     public static final String TITLE = "title";
@@ -67,6 +71,7 @@ public class Activity2 extends AppCompatActivity {
         noteText =(EditText) findViewById(R.id.note_text);
         //saveButton =(Button) findViewById(R.id.saveBtn);
         prefs = new SharedPrefs(this);
+
 
 
 
@@ -130,6 +135,8 @@ public class Activity2 extends AppCompatActivity {
 
         if (id == R.id.save){
             saveData();
+            onBackPressed();
+
 
 
         }
@@ -144,9 +151,14 @@ public class Activity2 extends AppCompatActivity {
 
 
 
+
+
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+
 
     public void saveData(){
        /** SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
@@ -162,6 +174,11 @@ public class Activity2 extends AppCompatActivity {
         NoteModel note = new NoteModel();
         note.setTitle(titleText.getText().toString());
         note.setDescription(noteText.getText().toString());
+
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE,d MMM yyyy HH:mm", Locale.getDefault());
+        String currentDateandTime = sdf.format(new Date());
+
+        note.setTime(currentDateandTime);
 
 
 

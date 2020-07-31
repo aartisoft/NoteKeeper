@@ -37,6 +37,7 @@ public class Dialog extends AppCompatDialogFragment {
                 prefs.removeNote(notes);
                 Toast.makeText(getActivity(),"Note deleted",Toast.LENGTH_SHORT).show();
                 dialog.cancel();
+                getActivity().onBackPressed();
 
 
             }

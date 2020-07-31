@@ -30,6 +30,7 @@
             android:inputType="textPersonName"
             android:hint="Title"
             android:textStyle="bold"
+            android:fontFamily="@font/roboto_bold"
             android:textCursorDrawable="@drawable/cursor_color"
             android:layout_marginBottom="15dp"
              />
@@ -48,6 +49,7 @@
         android:layout_below="@+id/title_Text"
         android:hint="Compose Note"
         android:gravity="top"
+        android:fontFamily="@font/roboto_medium"
 
        />
 
