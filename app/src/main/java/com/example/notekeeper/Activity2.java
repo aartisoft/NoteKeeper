@@ -1,31 +1,20 @@
 package com.example.notekeeper;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.content.Intent;
 
-import com.example.notekeeper.adapter.NoteAdapter;
 import com.example.notekeeper.model.NoteModel;
 import com.example.notekeeper.utils.SharedPrefs;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
@@ -71,22 +60,6 @@ public class Activity2 extends AppCompatActivity {
         noteText =(EditText) findViewById(R.id.note_text);
         //saveButton =(Button) findViewById(R.id.saveBtn);
         prefs = new SharedPrefs(this);
-
-
-
-
-
-
-
-        /*saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveData();
-                
-            }
-        });
-        */
-
 
 
         //get extras
@@ -143,6 +116,15 @@ public class Activity2 extends AppCompatActivity {
         if (id == R.id.delete){
             NoteModel note = new NoteModel();
             note.setRandomID(randomID);
+            note.setTitle(title);
+            note.setDescription(description);
+
+            SimpleDateFormat sdf = new SimpleDateFormat("EEE,d MMM yyyy HH:mm", Locale.getDefault());
+            String currentDateandTime = sdf.format(new Date());
+
+            note.setTime(currentDateandTime);
+
+
 
 
 
@@ -174,7 +156,7 @@ public class Activity2 extends AppCompatActivity {
         NoteModel note = new NoteModel();
         note.setTitle(titleText.getText().toString());
         note.setDescription(noteText.getText().toString());
-
+        //Set timestamp
         SimpleDateFormat sdf = new SimpleDateFormat("EEE,d MMM yyyy HH:mm", Locale.getDefault());
         String currentDateandTime = sdf.format(new Date());
 
@@ -194,7 +176,7 @@ public class Activity2 extends AppCompatActivity {
         else{
 
             note.setRandomID(randomID);
-            prefs.editNote(note);
+            prefs.updateNote(note);
         }
 
 

@@ -37,10 +37,10 @@
             >
 
             <ImageButton
-                android:id="@+id/fav_button"
+                android:id="@+id/restoreButton"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                app:srcCompat="@drawable/ic_fav"
+                app:srcCompat="@drawable/ic_restore_note"
                 android:layout_alignParentRight="true"
                 android:background="@android:color/transparent"
 

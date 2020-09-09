@@ -13,7 +13,7 @@ import java.util.Iterator;
 
 public class SharedPrefs {
    private Context context;
-   NoteAdapter noteAdapter;
+
     public SharedPrefs(Context context)
     {
         this.context = context;
@@ -92,7 +92,7 @@ public class SharedPrefs {
         return allNotes;
     }
 
-    public void editNote(NoteModel note){
+    public void updateNote(NoteModel note){
         ArrayList<NoteModel> allNotes = getAllNotes();
         for(int i = 0; i < allNotes.size(); i++){
             NoteModel item = allNotes.get(i);//gets specific note at each position
@@ -121,6 +121,7 @@ public class SharedPrefs {
 
 
     }
+
 
 
 }

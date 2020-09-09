@@ -18,47 +18,39 @@ import com.example.notekeeper.utils.SharedPrefs;
 
 import java.util.ArrayList;
 
-public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
+public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.ViewHolder>{
 
     ArrayList<NoteModel> mNoteModels;
     Context context;
-    OnNoteListener mOnNoteListener;
     SharedPrefs prefs;
 
 
 
 
 
-    public NoteAdapter(Context context, OnNoteListener onNoteListener) {
+    public FavoritesAdapter(Context context) {
 
         this.context = context;
-        this.mOnNoteListener = onNoteListener;
         this.prefs = new SharedPrefs(context);
-        //sets Data
+        //sets the Data
         refresh();
-
-
-
-
     }
 
-    /*public NoteAdapter(Context context){
-        this.context = context;
-    }*/
+
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list,null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.favlist,null);
 
-        ViewHolder obj = new ViewHolder(view, mOnNoteListener);
+        ViewHolder obj = new ViewHolder(view);
 
         return  obj;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder,final int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
        final  NoteModel currentNoteModel = mNoteModels.get(position);
 
@@ -68,32 +60,15 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
         holder.mDes.setText(mNoteModels.get(position).getDescription());
         holder.mTime.setText(mNoteModels.get(position).getTime());
 
-      final  boolean isFav  = currentNoteModel.getIsfavorited();
-
-      if (isFav == true){
-          holder.favBtn.setColorFilter(Color.RED);
-      }
-      else{
-          holder.favBtn.setColorFilter(Color.GRAY);
-      }
-
-
-        holder.favBtn.setOnClickListener(new View.OnClickListener() {
+        holder.remove_favButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                boolean isFav  = currentNoteModel.getIsfavorited();
                 if (isFav == true){
                     //remove from favs
-
                     currentNoteModel.setIsfavorited(false);
-                    holder.favBtn.setColorFilter(Color.GRAY);
                     Toast.makeText(context,"Removed from Favorites",Toast.LENGTH_SHORT).show();
-
-                }else{
-                    //favourite note
-                    currentNoteModel.setIsfavorited(true);
-                    holder.favBtn.setColorFilter(Color.RED);
-                    Toast.makeText(context,"Added to Favorites",Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -112,14 +87,14 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
         return mNoteModels.size();
     }
 
-    public  class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public  class ViewHolder extends RecyclerView.ViewHolder{
        // ImageView mImageView;
         TextView mTitle, mDes;
         TextView mTime;
-        OnNoteListener onNoteListener;
-        ImageButton favBtn;
 
-        public ViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
+        ImageButton remove_favButton;
+
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             //this.mImageView = itemView.findViewById(R.id.imagelv);
@@ -127,42 +102,36 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
             this.mTitle = itemView.findViewById(R.id.titlelv);
             this.mTime = itemView.findViewById(R.id.dateTime);
 
-            this.onNoteListener = onNoteListener;
-            this.favBtn = itemView.findViewById(R.id.fav_button);
+
+            this.remove_favButton = itemView.findViewById(R.id.remove_favBtn);
 
 
 
-            itemView.setOnClickListener(this);//Attatches ViewHolder to OnClickListener
+
 
         }
 
 
-        @Override
-        public void onClick(View v) {
-            onNoteListener.OnNoteClick(mNoteModels.get(getAbsoluteAdapterPosition()));
 
-        }
     }
 
     public void refresh(){
-        ArrayList<NoteModel> list = new ArrayList<>();
+         ArrayList<NoteModel> favNotes = new ArrayList<>();
 
         ArrayList<NoteModel> allNotes = prefs.getAllNotes();
-        for (int i = 0; i < allNotes.size(); i++){
+        for(int i = 0; i < allNotes.size(); i++){
             NoteModel item = allNotes.get(i);
 
-            if (item.getDeleted() == false){
-                list.add(item);
+            if(item.getIsfavorited()){
+                favNotes.add(item);
             }
         }
 
-        this.mNoteModels = list;
+
+        this.mNoteModels = favNotes;
         notifyDataSetChanged();
     }
 
-//interface to detect item click in recycler
-    public interface OnNoteListener{
-        void OnNoteClick(NoteModel noteModel);//sends position of clicked item
-    }
+
 
 }

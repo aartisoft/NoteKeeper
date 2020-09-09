@@ -4,13 +4,30 @@ import java.io.Serializable;
 
 public class NoteModel implements Serializable {
 
-    public String name;
 
     private String title;
     private String description;
-    private int img;
     private int randomID;
     private String time;
+    private Boolean isfavorited = false;
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
+    }
+
+    private Boolean isDeleted = false;
+
+    public Boolean getIsfavorited() {
+        return isfavorited;
+    }
+
+    public void setIsfavorited(Boolean isfavorited) {
+        this.isfavorited = isfavorited;
+    }
 
     public String getTime() {
         return time;
@@ -34,14 +51,6 @@ public class NoteModel implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public int getImg() {
-        return img;
-    }
-
-    public void setImg(int img) {
-        this.img = img;
     }
 
     public int getRandomID() {
