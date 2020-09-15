@@ -157,7 +157,7 @@ public class Activity2 extends AppCompatActivity {
         note.setTitle(titleText.getText().toString());
         note.setDescription(noteText.getText().toString());
         //Set timestamp
-        SimpleDateFormat sdf = new SimpleDateFormat("EEE,d MMM yyyy HH:mm", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE,d MMM yyyy HH:mm:ss", Locale.getDefault());
         String currentDateandTime = sdf.format(new Date());
 
         note.setTime(currentDateandTime);

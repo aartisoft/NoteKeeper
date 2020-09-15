@@ -71,7 +71,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
       final  boolean isFav  = currentNoteModel.getIsfavorited();
 
       if (isFav == true){
-          holder.favBtn.setColorFilter(Color.RED);
+          holder.favBtn.setColorFilter(context.getResources().getColor(R.color.colorPrimary));
       }
       else{
           holder.favBtn.setColorFilter(Color.GRAY);

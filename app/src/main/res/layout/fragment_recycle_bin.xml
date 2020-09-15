@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Recycle Bin is empty"
+            android:text="Recycle bin is empty"
             android:textSize="25dp"
             android:textStyle="italic"
             android:fontFamily="@font/roboto_italic">

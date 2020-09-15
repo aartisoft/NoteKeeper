@@ -8,8 +8,14 @@ import com.example.notekeeper.adapter.NoteAdapter;
 import com.example.notekeeper.model.NoteModel;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.Iterator;
+import java.util.Locale;
 
 public class SharedPrefs {
    private Context context;
@@ -88,6 +94,33 @@ public class SharedPrefs {
         } catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();
         }
+
+        //sort ArrayList by date
+        Collections.sort(allNotes, new Comparator<NoteModel>() {
+            @Override
+            public int compare(NoteModel o1, NoteModel o2) {
+
+                SimpleDateFormat sdf = new SimpleDateFormat("EEE,d MMM yyyy HH:mm:ss", Locale.getDefault());
+
+
+                try {
+                    Date date1 = sdf.parse(o1.getTime());
+                    Date date2 = sdf.parse(o2.getTime());
+
+
+
+                    return date1.compareTo(date2);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+
+                    return 0;
+                }
+
+
+            }
+        });
+
 
         return allNotes;
     }

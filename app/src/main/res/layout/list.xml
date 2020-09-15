@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="6dp"
-    app:cardElevation="2dp"
+    app:cardElevation="4dp"
     app:cardUseCompatPadding="true"
 
     >
@@ -17,18 +17,12 @@
         android:paddingBottom="5dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:background="@color/lightyellow"
+        android:background="@color/notecolor"
         android:orientation="vertical"
         android:weightSum="100"
         >
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:background="@color/darkbrown"
-            android:layout_weight="2">
 
-        </View>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -38,11 +32,14 @@
 
             <ImageButton
                 android:id="@+id/fav_button"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 app:srcCompat="@drawable/ic_fav"
                 android:layout_alignParentRight="true"
                 android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:tint="#ff6700"
+                android:padding="3dp"
 
                 />
 
@@ -63,7 +60,7 @@
             android:lines="1"
             android:text="Title"
 
-            android:textColor="#000"
+            android:textColor="#363434"
             android:textSize="22sp"
             android:textStyle="bold"
             android:fontFamily="@font/roboto_bolditalic"

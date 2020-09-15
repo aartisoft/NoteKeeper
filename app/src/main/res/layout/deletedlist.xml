@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="6dp"
-    app:cardElevation="2dp"
+    app:cardElevation="4dp"
     app:cardUseCompatPadding="true"
 
     >
@@ -17,18 +17,12 @@
         android:paddingBottom="5dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:background="@color/lightyellow"
+        android:background="@color/notecolor"
         android:orientation="vertical"
         android:weightSum="100"
         >
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:background="@color/darkbrown"
-            android:layout_weight="2">
 
-        </View>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -43,6 +37,7 @@
                 app:srcCompat="@drawable/ic_restore_note"
                 android:layout_alignParentRight="true"
                 android:background="@android:color/transparent"
+                android:padding="3dp"
 
                 />
 

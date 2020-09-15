@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class RecycleBinFragment extends Fragment {
     SharedPrefs prefs;
     SwipeRefreshLayout swipeRefreshLayout;
     TextView binTxt;
+    TextView binTitle;
 
 
 
@@ -65,14 +67,16 @@ public class RecycleBinFragment extends Fragment {
         // Inflate the layout for this fragment
         View recycleBin_View = inflater.inflate(R.layout.fragment_recycle_bin, container, false);
 
+        binTitle = recycleBin_View.findViewById(R.id.emptyText);
+
 
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowCustomEnabled(true);
 
         View view = ((AppCompatActivity) getActivity()).getSupportActionBar().getCustomView();
-        TextView txtEmpty = view.findViewById(R.id.emptyText);
-        txtEmpty.setOnClickListener(new View.OnClickListener() {
+        ImageView emptybinIcon = view.findViewById(R.id.emptyBin);
+        emptybinIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                // NoteModel note = new NoteModel();

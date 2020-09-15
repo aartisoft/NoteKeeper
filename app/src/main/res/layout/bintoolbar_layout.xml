@@ -20,22 +20,35 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="100"
+                >
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp">
+
 
                     <TextView
                         android:id="@+id/emptyText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Empty Bin"
-                        android:textStyle="bold"
+                        android:text="Empty bin"
+                        android:textStyle="italic"
                         android:textSize="20sp"
+                        android:layout_weight="20"
+                        android:textAlignment="viewEnd"
                         android:gravity="end" />
-                </RelativeLayout>
+
+
+                    <ImageButton
+                        android:id="@+id/emptyBin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_delete_sweep"
+                        android:layout_weight="80"
+                        android:background="@android:color/transparent"
+
+
+                        />
+
 
 
 

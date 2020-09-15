@@ -79,11 +79,19 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+
+                        item.setChecked(true);
+
+
                         switch (item.getItemId()) {
 
                             case R.id.favorites:
+
+
                                 openFragment(FavoritesFragment.newInstance());
                                 toolbar.setTitle("Favourites");
+
                                 return true;
 
                             case R.id.recycle_bin:
@@ -120,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.frame_layout, fragment);
         transaction.disallowAddToBackStack();
         transaction.commit();
+
 
 
         if(fragment instanceof  RecycleBinFragment){
