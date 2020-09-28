@@ -1,4 +1,4 @@
-package com.example.notekeeper;
+package com.example.securenote;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -11,8 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.notekeeper.model.NoteModel;
-import com.example.notekeeper.utils.SharedPrefs;
+import com.example.securenote.model.NoteModel;
+import com.example.securenote.utils.SharedPrefs;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

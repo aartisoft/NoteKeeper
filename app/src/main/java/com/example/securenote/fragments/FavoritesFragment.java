@@ -1,4 +1,4 @@
-package com.example.notekeeper.fragments;
+package com.example.securenote.fragments;
 
 import android.os.Bundle;
 
@@ -12,11 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.notekeeper.R;
-import com.example.notekeeper.adapter.FavoritesAdapter;
-import com.example.notekeeper.adapter.NoteAdapter;
-import com.example.notekeeper.model.NoteModel;
-import com.example.notekeeper.utils.SharedPrefs;
+import com.example.securenote.R;
+import com.example.securenote.adapter.FavoritesAdapter;
+import com.example.securenote.model.NoteModel;
+import com.example.securenote.utils.SharedPrefs;
 
 import java.util.ArrayList;
 

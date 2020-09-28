@@ -1,7 +1,6 @@
-package com.example.notekeeper.adapter;
+package com.example.securenote.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +11,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.notekeeper.R;
-import com.example.notekeeper.model.NoteModel;
-import com.example.notekeeper.utils.SharedPrefs;
+import com.example.securenote.R;
+import com.example.securenote.model.NoteModel;
+import com.example.securenote.utils.SharedPrefs;
 
 import java.util.ArrayList;
 

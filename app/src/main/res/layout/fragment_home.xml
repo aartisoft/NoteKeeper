@@ -62,7 +62,9 @@
                 app:srcCompat="@drawable/ic_add_black_24dp"
                 app:backgroundTint="@color/white"
                 app:tint="@color/colorPrimary"
-                tools:ignore="VectorDrawableCompat" />
+                tools:ignore="VectorDrawableCompat"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"/>
 
         </RelativeLayout>
 

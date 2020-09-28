@@ -1,42 +1,34 @@
 {
   "project_info": {
-    "project_number": "658796581577",
-    "firebase_url": "https://notekeeper-66c89.firebaseio.com",
-    "project_id": "notekeeper-66c89",
-    "storage_bucket": "notekeeper-66c89.appspot.com"
+    "project_number": "844852251085",
+    "firebase_url": "https://note-f0bbf.firebaseio.com",
+    "project_id": "note-f0bbf",
+    "storage_bucket": "note-f0bbf.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:658796581577:android:f56e7b1545095581347318",
+        "mobilesdk_app_id": "1:844852251085:android:57e101035e5b97d2a5dc84",
         "android_client_info": {
-          "package_name": "com.example.notekeeper"
+          "package_name": "com.vinny.securenote"
         }
       },
       "oauth_client": [
         {
-          "client_id": "658796581577-fqfd1mb7nkitloelq2q8hdqk59ahg79s.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.notekeeper",
-            "certificate_hash": "80cb9488f3860d8d50b8dc9a48940bae985c8e3d"
-          }
-        },
-        {
-          "client_id": "658796581577-ekh1sv2hou64gqm15ee2m8oe9j2t6ht6.apps.googleusercontent.com",
+          "client_id": "844852251085-ehfv57t4hfodn6psflgdhtuen7cb2uui.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBpGNLKKiT7O8zeyWK0Nkukpf9CsAZI4dA"
+          "current_key": "AIzaSyC5oKx2ETnHPDLQNhDKHX2pswb36cGaxHM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "658796581577-ekh1sv2hou64gqm15ee2m8oe9j2t6ht6.apps.googleusercontent.com",
+              "client_id": "844852251085-ehfv57t4hfodn6psflgdhtuen7cb2uui.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -32,10 +32,12 @@
                         android:layout_height="wrap_content"
                         android:text="Empty bin"
                         android:textStyle="italic"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
                         android:layout_weight="20"
                         android:textAlignment="viewEnd"
-                        android:gravity="end" />
+                        android:gravity="end"
+                        />
 
 
                     <ImageButton

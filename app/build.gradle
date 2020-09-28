@@ -5,7 +5,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.example.notekeeper"
+        applicationId "com.vinny.securenote"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
@@ -47,6 +47,10 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     implementation 'com.google.android.material:material:1.1.0-alpha10'
+    implementation 'com.github.thealeksandr:PFLockScreen-Android:1.0.0-beta7'
+    implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
+
+
 
 
 }

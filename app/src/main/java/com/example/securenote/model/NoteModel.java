@@ -1,4 +1,4 @@
-package com.example.notekeeper.model;
+package com.example.securenote.model;
 
 import java.io.Serializable;
 

@@ -1,27 +1,24 @@
-package com.example.notekeeper.fragments;
+package com.example.securenote.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.notekeeper.Activity2;
-import com.example.notekeeper.R;
-import com.example.notekeeper.adapter.NoteAdapter;
-import com.example.notekeeper.model.NoteModel;
-import com.example.notekeeper.utils.SharedPrefs;
+import com.example.securenote.Activity2;
+import com.example.securenote.R;
+import com.example.securenote.adapter.NoteAdapter;
+import com.example.securenote.model.NoteModel;
+import com.example.securenote.utils.SharedPrefs;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -65,7 +62,7 @@ public class HomeFragment extends Fragment {
 
               //RecyclerView instance
         mRecyclerview = rootView.findViewById(R.id.recyclerView);
-        mRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
+        mRecyclerview.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
 
         //SharedPrefs instance
         prefs = new SharedPrefs(getContext());

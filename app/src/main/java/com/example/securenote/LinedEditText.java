@@ -1,4 +1,4 @@
-package com.example.notekeeper;
+package com.example.securenote;
 
 import android.content.Context;
 import android.graphics.Canvas;

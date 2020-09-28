@@ -1,4 +1,4 @@
-package com.example.notekeeper.fragments;
+package com.example.securenote.fragments;
 
 import android.os.Bundle;
 
@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.notekeeper.R;
+import com.example.securenote.R;
 
 /**
  * A simple {@link Fragment} subclass.

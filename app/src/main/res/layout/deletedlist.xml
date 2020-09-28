@@ -4,8 +4,10 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="6dp"
-    app:cardElevation="4dp"
+    app:cardElevation="5dp"
     app:cardUseCompatPadding="true"
+    app:cardBackgroundColor="@color/notecolor"
+
 
     >
 
@@ -14,10 +16,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="5dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:background="@color/notecolor"
         android:orientation="vertical"
         android:weightSum="100"
         >
@@ -32,12 +32,12 @@
 
             <ImageButton
                 android:id="@+id/restoreButton"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 app:srcCompat="@drawable/ic_restore_note"
                 android:layout_alignParentRight="true"
                 android:background="@android:color/transparent"
-                android:padding="3dp"
+                android:tint="#ff6700"
 
                 />
 
@@ -71,12 +71,10 @@
             android:id="@+id/descriptionlv"
             android:text="Description"
             android:textSize="18sp"
-            android:textColor="#a9a9a9"
             android:fontFamily="@font/roboto_light"
 
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
             android:layout_below="@id/titlelv"
             android:lines="1"
             />
@@ -87,7 +85,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"
-            android:text="DateTime">
+            android:text="DateTime"
+            android:textColor="#a9a9a9"
+            >
 
         </TextView>
 

@@ -38,7 +38,7 @@
 
 
 
-    <com.example.notekeeper.LinedEditText
+    <com.example.securenote.LinedEditText
         android:id="@+id/note_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

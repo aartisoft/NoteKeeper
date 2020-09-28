@@ -1,11 +1,8 @@
-package com.example.notekeeper.utils;
+package com.example.securenote.utils;
 
 import android.content.Context;
 
-import com.example.notekeeper.Activity2;
-import com.example.notekeeper.MainActivity;
-import com.example.notekeeper.adapter.NoteAdapter;
-import com.example.notekeeper.model.NoteModel;
+import com.example.securenote.model.NoteModel;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -154,6 +151,22 @@ public class SharedPrefs {
 
 
     }
+
+
+    public void saveToPref( String str) {
+
+        context.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE).edit().putString("code",str).commit();//saves serialised string to sharedprefs
+
+    }
+
+    public  String getCode(Context context) {
+
+        return         context.getSharedPreferences("sharedprefs", Context.MODE_PRIVATE).getString("code","str");//saves serialised string to sharedprefs
+
+    }
+
+
+
 
 
 

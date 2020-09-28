@@ -1,4 +1,4 @@
-package com.example.notekeeper.utils;
+package com.example.securenote.utils;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one

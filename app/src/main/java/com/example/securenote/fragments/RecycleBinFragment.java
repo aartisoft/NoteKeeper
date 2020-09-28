@@ -1,4 +1,4 @@
-package com.example.notekeeper.fragments;
+package com.example.securenote.fragments;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,21 +14,15 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.notekeeper.Dialog;
-import com.example.notekeeper.R;
-import com.example.notekeeper.adapter.RecycleBinAdapter;
-import com.example.notekeeper.model.NoteModel;
-import com.example.notekeeper.utils.SharedPrefs;
+import com.example.securenote.R;
+import com.example.securenote.adapter.RecycleBinAdapter;
+import com.example.securenote.model.NoteModel;
+import com.example.securenote.utils.SharedPrefs;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 
 public class RecycleBinFragment extends Fragment {
