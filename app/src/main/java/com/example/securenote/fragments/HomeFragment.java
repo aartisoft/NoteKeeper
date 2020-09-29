@@ -15,10 +15,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.securenote.Activity2;
+import com.example.securenote.MainActivity;
 import com.example.securenote.R;
 import com.example.securenote.adapter.NoteAdapter;
 import com.example.securenote.model.NoteModel;
 import com.example.securenote.utils.SharedPrefs;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -33,6 +39,7 @@ public class HomeFragment extends Fragment {
     SwipeRefreshLayout swipeRefreshLayout;
     ArrayList<NoteModel>myList;
     TextView cText;
+    private AdView mAdView;
 
 
 
@@ -55,10 +62,22 @@ public class HomeFragment extends Fragment {
         View rootView =  inflater.inflate(R.layout.fragment_home, container, false);
 
 
-       /* Toolbar toolbar = rootView.findViewById(R.id.toolbar);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Secure Notes");
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("All Notes");*/
+
+
+
+       //AdMob
+        MobileAds.initialize(getContext(), new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        mAdView = rootView.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
 
               //RecyclerView instance
         mRecyclerview = rootView.findViewById(R.id.recyclerView);

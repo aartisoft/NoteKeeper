@@ -8,7 +8,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name="androidx.multidex.MultiDexApplication">
         <activity android:name="com.example.securenote.Activity2"
             android:theme="@style/AppTheme.NoActionBar"
         />
@@ -20,6 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-2431262281432400~4324130532"/>
+
     </application>
 
 </manifest>

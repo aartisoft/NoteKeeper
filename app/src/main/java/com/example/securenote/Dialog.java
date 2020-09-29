@@ -27,8 +27,8 @@ public class Dialog extends AppCompatDialogFragment {
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Delete Note");
-        builder.setMessage("Are you sure you want to delete this note?");
+        builder.setTitle("Move to Recycle Bin");
+        builder.setMessage("Are you sure you want to move this note to the Recycle Bin?");
 
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
@@ -39,7 +39,7 @@ public class Dialog extends AppCompatDialogFragment {
 
 
               // prefs.removeNote(notes);
-                Toast.makeText(getActivity(),"Note deleted",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"Note moved to Recycle Bin",Toast.LENGTH_SHORT).show();
                 dialog.cancel();
                 getActivity().onBackPressed();
 

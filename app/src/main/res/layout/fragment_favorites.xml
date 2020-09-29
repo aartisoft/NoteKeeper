@@ -5,36 +5,57 @@
     android:layout_height="match_parent"
     tools:context=".fragments.FavoritesFragment">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/favNotes_text"
+
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adViewfav"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Add Favorite Notes"
-            android:textSize="25dp"
-            android:textStyle="italic"
-            android:fontFamily="@font/roboto_italic">
-        </TextView>
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            android:layout_gravity="center"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+        </com.google.android.gms.ads.AdView>
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/favs_SwipeRefreshLayout"
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/favRecyclerView"
+            <TextView
+                android:id="@+id/favNotes_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"/>
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Add Favorite Notes"
+                android:textSize="25dp"
+                android:textStyle="italic"
+                android:fontFamily="@font/roboto_italic">
+            </TextView>
 
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-    </RelativeLayout>
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/favs_SwipeRefreshLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/favRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"/>
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </RelativeLayout>
 
 
+    </LinearLayout>
 
 
 

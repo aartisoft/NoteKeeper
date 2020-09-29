@@ -16,6 +16,11 @@ import com.example.securenote.R;
 import com.example.securenote.adapter.FavoritesAdapter;
 import com.example.securenote.model.NoteModel;
 import com.example.securenote.utils.SharedPrefs;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.ArrayList;
 
@@ -27,6 +32,7 @@ public class FavoritesFragment extends Fragment {
     SharedPrefs prefs;
     SwipeRefreshLayout swipeRefreshLayout;
     TextView favTxt;
+    private AdView mAdView;
 
     public FavoritesFragment() {
         // Required empty public constructor
@@ -50,6 +56,18 @@ public class FavoritesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View favView = inflater.inflate(R.layout.fragment_favorites, container, false);
+
+
+        //AdMob
+        MobileAds.initialize(getContext(), new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        mAdView = favView.findViewById(R.id.adViewfav);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
 
 
